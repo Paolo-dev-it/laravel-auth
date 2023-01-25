@@ -4,6 +4,8 @@
     {{-- <h1>Dati Utente</h1>
     {{ $userId }} | {{ $user->name }}
  --}}
+
+    <a href="{{ route('admin.posts.create') }}">Crea il tuo nuovo post</a>
     <table class="table">
         <thead>
             <tr>
@@ -18,11 +20,29 @@
                 <tr>
                     <td>{{ $elem->id }}</td>
                     <td>
-
                         <a href="{{ route('admin.posts.show', $elem->id) }}">{{ $elem->name }}</a>
                     </td>
                     <td>{{ $elem->date }}</td>
                     <td>{{ $elem->description }}</td>
+                    <td>
+                        <i class="fa-solid fa-pencil">
+                            <a href="{{ route('admin.posts.edit', $elem->id) }}"></a>
+                        </i>
+                    </td>
+
+                    <td>
+                        <a href="{{ route('admin.posts.edit', $elem->id) }}">Edit</a>
+
+
+
+                        <form method="POST" action="{{ route('admin.posts.destroy', $elem->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fa-solid fa-x"></i>
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
 

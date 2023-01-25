@@ -37,7 +37,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.post.create');
     }
 
     /**
@@ -48,7 +48,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $newPost = new Post();
+        $newPost->fill($data);
+        $newPost->save();
+
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -94,6 +100,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $single_post = Post::findOrFail($id);
+        $single_post->delete();
+        return redirect()->route('admin.posts.index');
     }
 }
