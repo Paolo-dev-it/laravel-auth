@@ -17,7 +17,10 @@
             @foreach ($post as $elem)
                 <tr>
                     <td>{{ $elem->id }}</td>
-                    <td>{{ $elem->name }}</td>
+                    <td>
+
+                        <a href="{{ route('admin.posts.show', $elem->id) }}">{{ $elem->name }}</a>
+                    </td>
                     <td>{{ $elem->date }}</td>
                     <td>{{ $elem->description }}</td>
                 </tr>
