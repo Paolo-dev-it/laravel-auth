@@ -10,9 +10,10 @@
 </head>
 
 <body>
+    <h1>Guest section</h1>
     {{-- Inseriamo Vue --}}
     <div id="root">
-        <h1>Guest section</h1>
+
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

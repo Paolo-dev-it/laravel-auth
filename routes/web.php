@@ -19,11 +19,15 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// Rotte di back office
+
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', 'HomeController@index')->name('index');
 
     Route::resource('/posts', PostController::class);
 });
+
+// Rotte di front office
 
 Route::get('{any?}', function () {
     return view('guest.home');
