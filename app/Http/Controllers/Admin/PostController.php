@@ -77,7 +77,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $elem = Post::findOrFail($id);
+
+        return view('admin.post.edit', compact('elem'));
     }
 
     /**
@@ -89,7 +91,20 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $post = Post::findOrFail($id);
+        $request->validate(
+            [
+                'name' => 'required|max:50'
+            ],
+            [
+                'name.required' => 'Attenzione il campo name è obbligatorio',
+                'name.max' => 'Attenzione il campo non deve superare i 50 caratteri'
+            ]
+        );
+        $post->update($data);
+
+        return redirect()->route('admin.posts.show', $post->id)->with('success', "Hai modificato con successo: $post->name");
     }
 
     /**

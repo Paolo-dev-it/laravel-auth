@@ -19,21 +19,22 @@
             @foreach ($post as $elem)
                 <tr>
                     <td>{{ $elem->id }}</td>
+
                     <td>
                         <a href="{{ route('admin.posts.show', $elem->id) }}">{{ $elem->name }}</a>
                     </td>
+
                     <td>{{ $elem->date }}</td>
+
                     <td>{{ $elem->description }}</td>
-                    <td>
-                        <i class="fa-solid fa-pencil">
-                            <a href="{{ route('admin.posts.edit', $elem->id) }}"></a>
-                        </i>
-                    </td>
 
                     <td>
-                        <a href="{{ route('admin.posts.edit', $elem->id) }}">Edit</a>
+                        <a href="{{ route('admin.posts.edit', $elem->id) }}">
+                            <button class="btn btn-warning btn-sm my-2">
+                                <i class="fa-solid fa-pencil"></i>
+                            </button>
 
-
+                        </a>
 
                         <form method="POST" action="{{ route('admin.posts.destroy', $elem->id) }}">
                             @csrf
